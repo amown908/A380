@@ -1,4 +1,3 @@
-# A380
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive A380 Flight Deck</title>
     <style>
-        /* This styles the background and text colors to match a dark cockpit theme */
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             background: #1e1e24; 
@@ -20,7 +18,6 @@
         h1 { color: #ffffff; margin-bottom: 5px; }
         .subtitle { color: #94a3b8; margin-bottom: 25px; }
 
-        /* This centers the image container */
         .cockpit-container { 
             position: relative; 
             display: inline-block; 
@@ -32,27 +29,30 @@
         }
         img { max-width: 100%; height: auto; display: block; }
         
-        /* This creates the transparent clickable "boxes" over the cockpit image */
+        /* The invisible clickable boxes */
         .panel-box {
             position: absolute;
             border: 2px solid transparent;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
         }
-        /* This handles the glowing highlight when your mouse hovers over a panel */
+        /* Highlighting overlay matching your second picture style */
         .panel-box:hover {
-            background: rgba(56, 189, 248, 0.2);
+            background: rgba(56, 189, 248, 0.25);
             border-color: #38bdf8;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
         }
         
-        /* EXACT POSITIONING FOR PANELS (Using percentages so it scales on mobile/desktop) */
-        #overhead-zone    { top: 2%;   left: 25%; width: 50%; height: 28%; }
-        #glareshield-zone { top: 32%;  left: 15%; width: 70%; height: 16%; }
-        #main-panel-zone  { top: 50%;  left: 10%; width: 80%; height: 20%; }
-        #pedestal-zone    { top: 72%;  left: 35%; width: 30%; height: 26%; }
+        /* NEW EXACT COORDINATES DIVIDING THE 7 SECTIONS MAPPED TO YOUR PICTURE */
+        #overhead-zone    { top: 0%;    left: 23.5%; width: 53.5%; height: 28.5%; }
+        #compass-zone     { top: 28.5%; left: 46.5%; width: 7.5%;  height: 12%; }
+        #glareshield-zone { top: 40.5%; left: 28.8%; width: 41.6%; height: 25%; }
+        #left-lateral     { top: 45.5%; left: 1.5%;  width: 27.3%; height: 27.5%; }
+        #right-lateral    { top: 45.5%; left: 70.4%; width: 28%;   height: 27.5%; }
+        #pedestal-zone    { top: 65.5%; left: 39.5%; width: 21%;   height: 34.5%; }
+        #left-seat        { top: 78%;   left: 21%;   width: 16.5%; height: 22%; }
+        #right-seat       { top: 78%;   left: 62.5%; width: 16.5%; height: 22%; }
 
-        /* This hides descriptions until their specific panel is clicked */
+        /* Description Cards styling */
         .description-card { 
             display: none; 
             margin-top: 30px; 
@@ -64,69 +64,82 @@
             border-left: 5px solid #38bdf8;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
         }
-        /* CSS Magic: Targets and shows the specific card when clicked via the URL anchor (#) */
         .description-card:target { 
             display: block; 
-            animation: fadeIn 0.5s;
+            animation: fadeIn 0.4s;
         }
         .custom-sentence {
             margin-top: 15px;
             padding: 10px;
             background: #1a202c;
             border-radius: 4px;
-            color: #fbbf24; /* Nice golden color to make your extra sentence pop out */
+            color: #fbbf24;
             font-style: italic;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
     <h1>A380 Flight Deck Guide</h1>
-    <p class="subtitle">Hover to reveal cockpit panels. Click a panel to view details and custom notes.</p>
+    <p class="subtitle">Hover over a panel to see its boundary. Click a panel to view details.</p>
 
     <div class="cockpit-container">
-        <img src="https://docs.flybywiresim.com/assets/images/pilots-corner/a380x/a380x-briefing/flight-deck/main_deck_overview.png" alt="A380 Cockpit Overview">
+        <img src="cockpit.jpg" alt="A380 Cockpit Overview">
 
         <a href="#overhead" class="panel-box" id="overhead-zone" title="Overhead Panel"></a>
-        <a href="#glareshield" class="panel-box" id="glareshield-zone" title="Glareshield"></a>
-        <a href="#mainpanel" class="panel-box" id="main-panel-zone" title="Main Panel"></a>
+        <a href="#compass" class="panel-box" id="compass-zone" title="Stdby Compass and Eye Reference"></a>
+        <a href="#glareshield" class="panel-box" id="glareshield-zone" title="Glareshield and Main Panel"></a>
+        <a href="#leftlateral" class="panel-box" id="left-lateral" title="Left Lateral Console"></a>
+        <a href="#rightlateral" class="panel-box" id="right-lateral" title="Right Lateral Console"></a>
         <a href="#pedestal" class="panel-box" id="pedestal-zone" title="Pedestal"></a>
+        <a href="#seats" class="panel-box" id="left-seat" title="Pilot Seats"></a>
+        <a href="#seats" class="panel-box" id="right-seat" title="Pilot Seats"></a>
     </div>
 
     <div id="overhead" class="description-card">
         <h2>Overhead Panel</h2>
-        <p>The overhead panel contains controls for aircraft systems, including electrical, fuel, hydraulics, pneumatics, and lighting. It follows Airbus's "dark cockpit" philosophy, meaning lights only turn on if something requires attention.</p>
-        <div class="custom-sentence">
-            <strong>My Custom Note:</strong> Change this text right here to write your first custom sentence.
-        </div>
+        <p>Controls primary aircraft infrastructure systems including electrical grids, fuel pumps, hydraulics, and environmental/air conditioning controls.</p>
+        <div class="custom-sentence"><strong>Part Number:</strong> MAXXXX..</div>
+    </div>
+
+    <div id="compass" class="description-card">
+        <h2>Stdby Compass and Eye Reference</h2>
+        <p>Houses the backup mechanical compass and the visual alignment indicator used by pilots to adjust their seats to the perfect sightline height.</p>
+        <div class="custom-sentence"><strong>Part Number:</strong> MAXXXX..</div>
     </div>
 
     <div id="glareshield" class="description-card">
-        <h2>Glareshield</h2>
-        <p>Located directly below the windshield, the glareshield houses the Flight Control Unit (FCU) and EFIS control panels. This is where pilots manage short-term autopilot instructions like speed, heading, and altitude adjustments.</p>
-        <div class="custom-sentence">
-            <strong>My Custom Note:</strong> Change this text right here to write your second custom sentence.
-        </div>
+        <h2>Glareshield and Main Panel</h2>
+        <p>Contains the primary display units (PFD/ND) alongside the Flight Control Unit (FCU) for automated autopilot inputs.</p>
+        <div class="custom-sentence"><strong>Part Number:</strong> MAXXXX..</div>
     </div>
 
-    <div id="mainpanel" class="description-card">
-        <h2>Main Panel</h2>
-        <p>The main panel directly faces the pilots and contains the Primary Flight Displays (PFD) and Navigation Displays (ND). It provides critical, real-time information regarding the plane's speed, attitude, altitude, and flight path.</p>
-        <div class="custom-sentence">
-            <strong>My Custom Note:</strong> Change this text right here to write your third custom sentence.
-        </div>
+    <div id="leftlateral" class="description-card">
+        <h2>Lateral Console (Captain Side)</h2>
+        <p>Contains the Captain's sidestick controller, nose-wheel steering tiller, and oxygen mask compartment.</p>
+        <div class="custom-sentence"><strong>Part Number:</strong> MAXXXX..</div>
+    </div>
+
+    <div id="rightlateral" class="description-card">
+        <h2>Lateral Console (First Officer Side)</h2>
+        <p>Contains the First Officer's sidestick controller, right-side steering tiller, and navigation/communication management inputs.</p>
+        <div class="custom-sentence"><strong>Part Number:</strong> MAXXXX.</div>
     </div>
 
     <div id="pedestal" class="description-card">
         <h2>Pedestal</h2>
-        <p>Positioned between the two pilot seats, the center pedestal holds the thrust levers, engine start panels, flap and slat controls, speed brake lever, and the Multi-function Control Display Units (MCDU) used for entering flight plans.</p>
-        <div class="custom-sentence">
-            <strong>My Custom Note:</strong> Change this text right here to write your fourth custom sentence.
-        </div>
+        <p>The central hub housing the engine thrust throttles, landing gear controls, speedbrakes, flap levers, and the keyboard/MCDU flight computer units.</p>
+        <div class="custom-sentence"><strong>Part Number:</strong> MAXXXX..</div>
+    </div>
+
+    <div id="seats" class="description-card">
+        <h2>Seats</h2>
+        <p>Electronically adjustable pilot seats designed with custom lumbar adjustments for long-haul operations.</p>
+        <div class="custom-sentence"><strong>Part Number:</strong> MAXXXX..</div>
     </div>
 
 </body>
