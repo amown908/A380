@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A380 Overhead Panel Parts Guide</title>
+    <title>A380 Overhead Panel Close-Up Guide</title>
     <style>
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
@@ -19,34 +19,36 @@
         .subtitle { color: #9ca3af; margin-bottom: 20px; }
         .back-link { color: #38bdf8; text-decoration: none; margin-bottom: 15px; font-weight: bold; }
 
-        /* Container for the Overhead image */
+        /* Container for the dedicated close-up image */
         .image-container { 
             position: relative; 
             display: inline-block; 
             max-width: 100%;
             border: 3px solid #374151;
             border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
         img { max-width: 100%; height: auto; display: block; }
         
-        /* Interactive clickable zones over sub-panels */
+        /* Interactive clickable zones over the close-up sub-panels */
         .sub-panel-zone {
             position: absolute;
-            border: 1px solid transparent;
+            border: 2px solid transparent;
             cursor: pointer;
+            transition: all 0.2s ease-in-out;
         }
         .sub-panel-zone:hover {
-            background: rgba(234, 179, 8, 0.2); /* Soft gold highlight on hover */
+            background: rgba(234, 179, 8, 0.2); /* Gold tint */
             border-color: #eab308;
         }
 
-        /* EXAMPLE COORDINATES FOR OVERHEAD SUB-PANELS (Change/add more as needed) */
-        #apu-fire-zone   { top: 5%;   left: 38%; width: 24%; height: 10%; }
-        #adirs-zone      { top: 16%;  left: 12%; width: 24%; height: 12%; }
-        #electrical-zone { top: 45%;  left: 38%; width: 24%; height: 15%; }
-        #hydraulic-zone  { top: 45%;  left: 12%; width: 24%; height: 15%; }
+        /* COORDINATES TAILORED FOR THE CLOSE-UP RECTANGLE IMAGE */
+        #apu-fire-zone   { top: 2%;   left: 38%; width: 24%; height: 12%; }
+        #adirs-zone      { top: 15%;  left: 3%;  width: 32%; height: 23%; }
+        #hydraulic-zone  { top: 56%;  left: 3%;  width: 32%; height: 20%; }
+        #electrical-zone { top: 56%;  left: 38%; width: 24%; height: 26%; }
 
-        /* THE POPUP BOX (Hidden by default) */
+        /* POPUP MODAL STYLING */
         .popup-box {
             display: none;
             position: fixed;
@@ -57,7 +59,7 @@
             border: 2px solid #38bdf8;
             padding: 25px;
             border-radius: 8px;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.7);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
             z-index: 100;
             width: 90%;
             max-width: 400px;
@@ -65,9 +67,8 @@
         }
         .popup-box h3 { margin-top: 0; color: #38bdf8; }
         .part-number { font-size: 1.1em; color: #f97316; font-family: monospace; margin: 10px 0; }
-        .custom-note { font-style: italic; color: #fbbf24; margin-top: 10px; background: #111827; padding: 8px; border-radius: 4px;}
+        .custom-note { font-style: italic; color: #fbbf24; margin-top: 10px; background: #111827; padding: 10px; border-radius: 4px;}
         
-        /* Close button inside popup */
         .close-btn {
             float: right;
             background: #374151;
@@ -79,29 +80,28 @@
         }
         .close-btn:hover { background: #ef4444; }
 
-        /* Dark background overlay behind the popup */
         .overlay-screen {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.75);
             z-index: 99;
         }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-link">← Back to Main Cockpit</a>
-    <h1>A380 Overhead Panel Parts List</h1>
-    <p class="subtitle">Click on any sub-panel to view its specific Part Number and technical notes.</p>
+    <a href="index.html" class="back-link">← Back to Full Cockpit</a>
+    <h1>A380 Overhead Panel Control Hub</h1>
+    <p class="subtitle">Click on any specific system panel to view its P/N and custom configuration notes.</p>
 
     <div class="image-container">
-        <img src="cockpit.jpg" alt="A380 Overhead Panel">
+        <img src="https://docs.flybywiresim.com/assets/images/pilots-corner/a380x/a380x-briefing/flight-deck/overviews/ovhd/ovhd_overview.png" alt="A380 Overhead Panel Close-Up">
 
         <div class="sub-panel-zone" id="apu-fire-zone" onclick="showPopup('apu-fire')"></div>
         <div class="sub-panel-zone" id="adirs-zone" onclick="showPopup('adirs')"></div>
-        <div class="sub-panel-zone" id="electrical-zone" onclick="showPopup('electrical')"></div>
         <div class="sub-panel-zone" id="hydraulic-zone" onclick="showPopup('hydraulic')"></div>
+        <div class="sub-panel-zone" id="electrical-zone" onclick="showPopup('electrical')"></div>
     </div>
 
     <div id="dark-screen" class="overlay-screen" onclick="closeAllPopups()"></div>
@@ -111,7 +111,7 @@
         <h3>APU Fire Control Panel</h3>
         <div class="part-number"><strong>Part No:</strong> P/N 380-APU-9921-A</div>
         <p>Controls the auxiliary power unit fire extinguishing squibs and warning horn resets.</p>
-        <div class="custom-note"><strong>Note:</strong> Check status light matches lower ECAM page.</div>
+        <div class="custom-note"><strong>My Sentence:</strong> Check status light matches lower ECAM page.</div>
     </div>
 
     <div id="popup-adirs" class="popup-box">
@@ -119,15 +119,7 @@
         <h3>ADIRS Panel (Air Data Inertial Reference)</h3>
         <div class="part-number"><strong>Part No:</strong> P/N 380-ADR-1104-B</div>
         <p>Provides position, attitude, and air data reference computing to the primary flight data screens.</p>
-        <div class="custom-note"><strong>Note:</strong> Alignment takes approximately 10 minutes.</div>
-    </div>
-
-    <div id="popup-electrical" class="popup-box">
-        <button class="close-btn" onclick="closeAllPopups()">X</button>
-        <h3>Main Electrical Control Panel</h3>
-        <div class="part-number"><strong>Part No:</strong> P/N 380-ELE-4400-X</div>
-        <p>Manages battery connectors, external power initialization feeds, and generator line contactors.</p>
-        <div class="custom-note"><strong>Note:</strong> Keep EXT PWR ON until engines take over loads.</div>
+        <div class="custom-note"><strong>My Sentence:</strong> Alignment takes approximately 10 minutes.</div>
     </div>
 
     <div id="popup-hydraulic" class="popup-box">
@@ -135,12 +127,20 @@
         <h3>Hydraulic Power Management</h3>
         <div class="part-number"><strong>Part No:</strong> P/N 380-HYD-5520-C</div>
         <p>Monitors Green and Yellow engine-driven pump pressure architectures.</p>
-        <div class="custom-note"><strong>Note:</strong> Normal operating system pressure limits sit at 5000 PSI.</div>
+        <div class="custom-note"><strong>My Sentence:</strong> Normal operating system pressure limits sit at 5000 PSI.</div>
+    </div>
+
+    <div id="popup-electrical" class="popup-box">
+        <button class="close-btn" onclick="closeAllPopups()">X</button>
+        <h3>Main Electrical Control Panel</h3>
+        <div class="part-number"><strong>Part No:</strong> P/N 380-ELE-4400-X</div>
+        <p>Manages battery connectors, external power initialization feeds, and generator line contactors.</p>
+        <div class="custom-note"><strong>My Sentence:</strong> Keep EXT PWR ON until engines take over loads.</div>
     </div>
 
     <script>
         function showPopup(panelId) {
-            closeAllPopups(); // Close any currently open popup first
+            closeAllPopups();
             document.getElementById('dark-screen').style.display = 'block';
             document.getElementById('popup-' + panelId).style.display = 'block';
         }
