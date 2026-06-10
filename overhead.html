@@ -19,7 +19,7 @@
         .subtitle { color: #9ca3af; margin-bottom: 20px; }
         .back-link { color: #38bdf8; text-decoration: none; margin-bottom: 15px; font-weight: bold; }
 
-        /* Container for the dedicated close-up image */
+        /* Container for the dedicated close-up overhead image */
         .image-container { 
             position: relative; 
             display: inline-block; 
@@ -30,7 +30,7 @@
         }
         img { max-width: 100%; height: auto; display: block; }
         
-        /* Interactive clickable zones over the close-up sub-panels */
+        /* Interactive clickable zones over the sub-panels */
         .sub-panel-zone {
             position: absolute;
             border: 2px solid transparent;
@@ -38,15 +38,15 @@
             transition: all 0.2s ease-in-out;
         }
         .sub-panel-zone:hover {
-            background: rgba(234, 179, 8, 0.2); /* Gold tint */
+            background: rgba(234, 179, 8, 0.25); /* Gold tint on hover */
             border-color: #eab308;
         }
 
-        /* COORDINATES TAILORED FOR THE CLOSE-UP RECTANGLE IMAGE */
-        #apu-fire-zone   { top: 2%;   left: 38%; width: 24%; height: 12%; }
-        #adirs-zone      { top: 15%;  left: 3%;  width: 32%; height: 23%; }
-        #hydraulic-zone  { top: 56%;  left: 3%;  width: 32%; height: 20%; }
-        #electrical-zone { top: 56%;  left: 38%; width: 24%; height: 26%; }
+        /* COORDINATES PRECISION MAPPED TO THE OVERHEAD GRID IMAGE */
+        #apu-fire-zone   { top: 2%;   left: 36.8%; width: 26.4%; height: 11.5%; }
+        #adirs-zone      { top: 15%;  left: 2.8%;  width: 32.2%; height: 22.5%; }
+        #hydraulic-zone  { top: 56%;  left: 2.8%;  width: 32.2%; height: 20.5%; }
+        #electrical-zone { top: 56%;  left: 36.8%; width: 26.4%; height: 26.5%; }
 
         /* POPUP MODAL STYLING */
         .popup-box {
@@ -96,7 +96,8 @@
     <p class="subtitle">Click on any specific system panel to view its P/N and custom configuration notes.</p>
 
     <div class="image-container">
-<img src="overhead.png" alt="A380 Overhead Panel Close-Up">
+        <img src="https://docs.flybywiresim.com/assets/images/pilots-corner/a380x/a380x-briefing/flight-deck/overviews/ovhd/ovhd_overview.png" alt="A380 Overhead Panel Close-Up">
+
         <div class="sub-panel-zone" id="apu-fire-zone" onclick="showPopup('apu-fire')"></div>
         <div class="sub-panel-zone" id="adirs-zone" onclick="showPopup('adirs')"></div>
         <div class="sub-panel-zone" id="hydraulic-zone" onclick="showPopup('hydraulic')"></div>
