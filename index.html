@@ -1,0 +1,133 @@
+# A380
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive A380 Flight Deck</title>
+    <style>
+        /* This styles the background and text colors to match a dark cockpit theme */
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background: #1e1e24; 
+            color: #e2e8f0; 
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 { color: #ffffff; margin-bottom: 5px; }
+        .subtitle { color: #94a3b8; margin-bottom: 25px; }
+
+        /* This centers the image container */
+        .cockpit-container { 
+            position: relative; 
+            display: inline-block; 
+            max-width: 100%;
+            border: 4px solid #334155;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+        img { max-width: 100%; height: auto; display: block; }
+        
+        /* This creates the transparent clickable "boxes" over the cockpit image */
+        .panel-box {
+            position: absolute;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        /* This handles the glowing highlight when your mouse hovers over a panel */
+        .panel-box:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: #38bdf8;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+        }
+        
+        /* EXACT POSITIONING FOR PANELS (Using percentages so it scales on mobile/desktop) */
+        #overhead-zone    { top: 2%;   left: 25%; width: 50%; height: 28%; }
+        #glareshield-zone { top: 32%;  left: 15%; width: 70%; height: 16%; }
+        #main-panel-zone  { top: 50%;  left: 10%; width: 80%; height: 20%; }
+        #pedestal-zone    { top: 72%;  left: 35%; width: 30%; height: 26%; }
+
+        /* This hides descriptions until their specific panel is clicked */
+        .description-card { 
+            display: none; 
+            margin-top: 30px; 
+            width: 100%;
+            max-width: 700px; 
+            background: #2d3748; 
+            padding: 25px; 
+            border-radius: 8px; 
+            border-left: 5px solid #38bdf8;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+        /* CSS Magic: Targets and shows the specific card when clicked via the URL anchor (#) */
+        .description-card:target { 
+            display: block; 
+            animation: fadeIn 0.5s;
+        }
+        .custom-sentence {
+            margin-top: 15px;
+            padding: 10px;
+            background: #1a202c;
+            border-radius: 4px;
+            color: #fbbf24; /* Nice golden color to make your extra sentence pop out */
+            font-style: italic;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>A380 Flight Deck Guide</h1>
+    <p class="subtitle">Hover to reveal cockpit panels. Click a panel to view details and custom notes.</p>
+
+    <div class="cockpit-container">
+        <img src="https://docs.flybywiresim.com/assets/images/pilots-corner/a380x/a380x-briefing/flight-deck/main_deck_overview.png" alt="A380 Cockpit Overview">
+
+        <a href="#overhead" class="panel-box" id="overhead-zone" title="Overhead Panel"></a>
+        <a href="#glareshield" class="panel-box" id="glareshield-zone" title="Glareshield"></a>
+        <a href="#mainpanel" class="panel-box" id="main-panel-zone" title="Main Panel"></a>
+        <a href="#pedestal" class="panel-box" id="pedestal-zone" title="Pedestal"></a>
+    </div>
+
+    <div id="overhead" class="description-card">
+        <h2>Overhead Panel</h2>
+        <p>The overhead panel contains controls for aircraft systems, including electrical, fuel, hydraulics, pneumatics, and lighting. It follows Airbus's "dark cockpit" philosophy, meaning lights only turn on if something requires attention.</p>
+        <div class="custom-sentence">
+            <strong>My Custom Note:</strong> Change this text right here to write your first custom sentence.
+        </div>
+    </div>
+
+    <div id="glareshield" class="description-card">
+        <h2>Glareshield</h2>
+        <p>Located directly below the windshield, the glareshield houses the Flight Control Unit (FCU) and EFIS control panels. This is where pilots manage short-term autopilot instructions like speed, heading, and altitude adjustments.</p>
+        <div class="custom-sentence">
+            <strong>My Custom Note:</strong> Change this text right here to write your second custom sentence.
+        </div>
+    </div>
+
+    <div id="mainpanel" class="description-card">
+        <h2>Main Panel</h2>
+        <p>The main panel directly faces the pilots and contains the Primary Flight Displays (PFD) and Navigation Displays (ND). It provides critical, real-time information regarding the plane's speed, attitude, altitude, and flight path.</p>
+        <div class="custom-sentence">
+            <strong>My Custom Note:</strong> Change this text right here to write your third custom sentence.
+        </div>
+    </div>
+
+    <div id="pedestal" class="description-card">
+        <h2>Pedestal</h2>
+        <p>Positioned between the two pilot seats, the center pedestal holds the thrust levers, engine start panels, flap and slat controls, speed brake lever, and the Multi-function Control Display Units (MCDU) used for entering flight plans.</p>
+        <div class="custom-sentence">
+            <strong>My Custom Note:</strong> Change this text right here to write your fourth custom sentence.
+        </div>
+    </div>
+
+</body>
+</html>
